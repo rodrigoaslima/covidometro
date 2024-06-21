@@ -1,7 +1,9 @@
 import axios from 'axios'
 
-const Api = axios.create({
+export const CovidApi = axios.create({
     baseURL: 'https://covid-api.com/api'
 })
 
-export default Api
+export const IsoApi = axios.create({
+    baseURL: 'https://restcountries.com/v3.1'
+})

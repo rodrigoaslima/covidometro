@@ -1,11 +1,14 @@
 import { GlobalStyle } from "."
+import { CountryProvider } from "./context/CountryContext"
 import HomePage from "./pages/HomePage"
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <HomePage/>
+      <CountryProvider>
+        <HomePage/>
+      </CountryProvider>
     </>
     
   )
