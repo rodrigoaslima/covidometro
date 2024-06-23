@@ -6,8 +6,33 @@ import { Container, InnerContainer, Img, TittleContainer, TextContainer, Tittle,
         } from './styles';
 import SearchComponent from '../../components/SearchComponent';
 import CovidDataComponent from '../../components/CovidDataComponent';
+import { CountryContext, CountryDataInterface } from '../../context/CountryContext';
+import { useContext, useEffect, useState } from 'react';
+import { CircularProgress } from '@mui/material';
 
 const HomePage = () => {
+    const { countryData, loading } = useContext(CountryContext);
+
+    const [dataArray, setDataArray] = useState<CountryDataInterface[]>([]) 
+
+   console.log('dataArray: ', countryData)
+
+   useEffect(() => {
+    if (countryData) {
+        setDataArray((prevArray) => {const countryExists = prevArray.some((item) => item.iso === countryData.iso);
+
+        if (countryExists) {
+          alert(`O país ${countryData.countryName} já existe no array.`);
+          return prevArray;
+        } else {
+          return [...prevArray, countryData];
+        }
+      });
+    }
+  }, [countryData, setDataArray]);
+
+
+
   return(
     <Container>
         <HeaderContainer>
@@ -29,15 +54,23 @@ const HomePage = () => {
                 <SearchComponent />
             </InputContainer>
 
-            <InputContainer>
-                <CovidDataComponent
-                    country="África do Sul"
-                    casesNumber={32687680}
-                    deaths={672790}
-                    fatalityRate={2.05}
-                />
-            </InputContainer>
-                
+            {loading ? (
+                <CircularProgress color="secondary" />
+            ) :
+                <>
+                    {dataArray.map(({confirmed,countryName,deaths,fatality_rate}: CountryDataInterface, index) => 
+
+                        <InputContainer key={index}>
+                            <CovidDataComponent
+                                country={countryName}
+                                casesNumber={confirmed}
+                                deaths={deaths}
+                                fatalityRate={fatality_rate}
+                            />
+                        </InputContainer>   
+                    )}
+                </>
+            }    
         </InnerContainer>
     </Container>
     

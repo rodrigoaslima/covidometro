@@ -5,7 +5,7 @@ interface CovidDataInterface{
     country: string
     casesNumber: number
     deaths: number
-    fatalityRate: number
+    fatalityRate: string
 }
 
 

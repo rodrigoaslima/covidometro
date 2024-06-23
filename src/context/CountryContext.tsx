@@ -1,16 +1,16 @@
 import { createContext, useState, ReactNode } from 'react';
 import { CovidApi, IsoApi } from '../services/api';
 
-interface CountryData {
+export interface CountryDataInterface {
   confirmed: number;
   deaths: number;
-  region: {
-    name: string;
-  };
+  fatality_rate: string;
+  countryName: string;
+  iso: string;
 }
 
 interface CountryContextProps {
-  countryData: CountryData | null;
+  countryData: CountryDataInterface | null;
   fetchCountryData: (countryName: string) => Promise<void>;
   loading: boolean;
   error: Error | null;
@@ -28,19 +28,30 @@ interface CountryProviderProps {
 }
 
 export const CountryProvider = ({ children }: CountryProviderProps) => {
-  const [countryData, setCountryData] = useState<CountryData | null>(null);
+  const [countryData, setCountryData] = useState<CountryDataInterface | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
   const fetchCountryData = async (countryName: string) => {
+    const name = countryName.toLocaleUpperCase();
+    console.log('name: ', name)
     setLoading(true);
     setError(null);
 
     try {
-      const isoResponse = await IsoApi.get(`/name/${countryName}`);
+      const isoResponse = await IsoApi.get(`/name/${name}`);
       
       const covidResponse = await CovidApi(`/reports/total?iso=${isoResponse.data[0].cca3}`);
-      setCountryData(covidResponse.data);
+      const fatalityRatePercent = covidResponse.data.data.fatality_rate * 100;
+      
+      const countryData: CountryDataInterface = {
+        confirmed: covidResponse.data.data.confirmed,
+        deaths: covidResponse.data.data.deaths,
+        fatality_rate: fatalityRatePercent.toFixed(2),
+        countryName: name,
+        iso: isoResponse.data[0].cca3
+      }
+      setCountryData(countryData);
     } catch (err) {
       setError(err as Error);
     } finally {

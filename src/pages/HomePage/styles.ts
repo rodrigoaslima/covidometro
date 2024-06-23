@@ -19,6 +19,8 @@ export const InnerContainer = styled.div`
 
 export const Img = styled.img`
     width: 35em;
+    user-select: none;
+    cursor: pointer
 `;
 
 export const TittleContainer = styled.div`
@@ -31,15 +33,21 @@ export const TextContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 49rem;
+    user-select: none;
+    cursor: pointer
 `;
 
 export const Tittle = styled.h1`
     font-size: 56px;
+    user-select: none;
+    cursor: pointer
 `;
 
 export const Text = styled.p`
     font-size: 25px;
     font-weight: 400;
+    user-select: none;
+    cursor: pointer
 `;
 
 export const Wrapper = styled.div`
