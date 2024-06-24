@@ -8,30 +8,38 @@ import SearchComponent from '../../components/SearchComponent';
 import CovidDataComponent from '../../components/CovidDataComponent';
 import { CountryContext, CountryDataInterface } from '../../context/CountryContext';
 import { useContext, useEffect, useState } from 'react';
-import { CircularProgress } from '@mui/material';
+import { Alert, CircularProgress, Snackbar } from '@mui/material';
 
 const HomePage = () => {
-    const { countryData, loading } = useContext(CountryContext);
+    const { countryData, loading, error } = useContext(CountryContext);
 
-    const [dataArray, setDataArray] = useState<CountryDataInterface[]>([]) 
-
-   console.log('dataArray: ', countryData)
+    const [dataArray, setDataArray] = useState<CountryDataInterface[]>([]);
+    const [open, setOpen] = useState<boolean>(false); 
 
    useEffect(() => {
+    if(error){
+        setOpen(true);
+    }
+
     if (countryData) {
         setDataArray((prevArray) => {const countryExists = prevArray.some((item) => item.iso === countryData.iso);
 
         if (countryExists) {
-          alert(`O país ${countryData.countryName} já existe no array.`);
-          return prevArray;
+            return prevArray;
         } else {
           return [...prevArray, countryData];
         }
       });
     }
-  }, [countryData, setDataArray]);
+  }, [countryData, setDataArray, error]);
 
 
+    const handleClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+        return;
+        }
+        setOpen(false);
+    };
 
   return(
     <Container>
@@ -58,7 +66,7 @@ const HomePage = () => {
                 <CircularProgress color="secondary" />
             ) :
                 <>
-                    {dataArray.map(({confirmed,countryName,deaths,fatality_rate}: CountryDataInterface, index) => 
+                    {dataArray.map(({confirmed,countryName,deaths,fatality_rate, iso}: CountryDataInterface, index) => 
 
                         <InputContainer key={index}>
                             <CovidDataComponent
@@ -66,12 +74,20 @@ const HomePage = () => {
                                 casesNumber={confirmed}
                                 deaths={deaths}
                                 fatalityRate={fatality_rate}
+                                iso={iso}
                             />
                         </InputContainer>   
                     )}
                 </>
             }    
         </InnerContainer>
+
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                Não foi possivel encontrar o pais solicitado.
+            </Alert>
+        </Snackbar>
+
     </Container>
     
   );

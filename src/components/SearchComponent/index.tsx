@@ -7,6 +7,7 @@ const SearchComponent = () => {
   const { fetchCountryData, loading } = useContext(CountryContext);
 
   const handleSearch = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    //event.preventDefault();
     if (event.key === 'Enter') {
       fetchCountryData(countryName);
     }

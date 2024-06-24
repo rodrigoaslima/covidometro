@@ -1,13 +1,19 @@
 import { GlobalStyle } from "."
 import { CountryProvider } from "./context/CountryContext"
-import HomePage from "./pages/HomePage"
+import { BrowserRouter as Router } from 'react-router-dom';
+import Routes from './routes';
+import { DataChartProvider } from "./context/DataChartContext";
 
 function App() {
   return (
     <>
       <GlobalStyle />
       <CountryProvider>
-        <HomePage/>
+        <DataChartProvider>
+          <Router>
+            <Routes />
+          </Router>
+        </DataChartProvider>
       </CountryProvider>
     </>
     

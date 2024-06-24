@@ -6,12 +6,13 @@ interface CovidDataInterface{
     casesNumber: number
     deaths: number
     fatalityRate: string
+    iso: string
 }
 
 
-const CovidDataComponent = ({ country, casesNumber, deaths, fatalityRate }:CovidDataInterface) => {
+const CovidDataComponent = ({ iso ,country, casesNumber, deaths, fatalityRate }:CovidDataInterface) => {
   return (
-    <Container>
+    <Container to={`/details/${iso}`}>
       <CountryName>{country}</CountryName>
       <StatsContainer>
         <StatBox>

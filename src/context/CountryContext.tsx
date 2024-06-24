@@ -34,7 +34,6 @@ export const CountryProvider = ({ children }: CountryProviderProps) => {
 
   const fetchCountryData = async (countryName: string) => {
     const name = countryName.toLocaleUpperCase();
-    console.log('name: ', name)
     setLoading(true);
     setError(null);
 
