@@ -1,4 +1,4 @@
-# FarmTech COVID-19 Data Viewer
+# COVIDOMETRO
 
 Este projeto é uma aplicação web desenvolvida como um teste de avaliação para a empresa FarmTech. A aplicação permite aos usuários pesquisar informações sobre COVID-19 por país e visualizar dados detalhados com gráficos comparativos ao longo do tempo.
 
