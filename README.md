@@ -1,30 +1,39 @@
-# React + TypeScript + Vite
+# FarmTech COVID-19 Data Viewer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é uma aplicação web desenvolvida como um teste de avaliação para a empresa FarmTech. A aplicação permite aos usuários pesquisar informações sobre COVID-19 por país e visualizar dados detalhados com gráficos comparativos ao longo do tempo.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ReactJS
+Vite
+Yarn
 
-## Expanding the ESLint configuration
+## Pré-requisitos
+Antes de começar, certifique-se de ter o seguinte instalado em sua máquina:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Node.js
+Yarn
 
-- Configure the top-level `parserOptions` property like this:
+## Como Executar o Projeto Localmente
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+Siga estas instruções para configurar e executar o projeto em seu ambiente local.
+
+### 1. Clone o Repositório
+```
+git clone https://github.com/rodrigoaslima/covidometro.git
+cd covidometro
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### 2. Instale as Dependências
+```
+yarn install
+```
+
+### 3. Execute o Projeto
+  ```
+  yarn dev
+  ```
+#### 4. Acesse a Aplicação
+ Abra seu navegador e acesse http://localhost:3000 para ver a aplicação em execução ou por outra porta indicada no terminal.
+
+
