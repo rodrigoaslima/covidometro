@@ -7,7 +7,7 @@ import DetailPage from './pages/DetailPage';
 const Routes = () => {
   return(
     <Switch>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/covidometro/" element={<HomePage />} />
         <Route path="/details/:countryName" element={<DetailPage />} />
     </Switch>
   )

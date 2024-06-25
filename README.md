@@ -1,5 +1,8 @@
 # COVIDOMETRO
 
+Esse projeto se encontra online, no github pages.
+Para acessar: https://rodrigoaslima.github.io/covidometro/
+
 Este projeto é uma aplicação web desenvolvida como um teste de avaliação para a empresa FarmTech. A aplicação permite aos usuários pesquisar informações sobre COVID-19 por país e visualizar dados detalhados com gráficos comparativos ao longo do tempo.
 
 ## Funcionalidades

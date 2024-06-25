@@ -5,8 +5,10 @@ import {Chart as ChartSJ,
     LineElement, 
     CategoryScale, 
     LinearScale, 
-    PointElement
+    PointElement,
+    ChartOptions
 } from 'chart.js';
+
 
 import { CircularProgress, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { DataChartContext } from '../../context/DataChartContext';
@@ -64,10 +66,7 @@ const DetailPage = () => {
         })
     }
 
-    const options = {
-        plugins: {
-          legend: true,
-        },
+    const options: ChartOptions<'line'> = {
         scales: {
           y1: {
             type: 'linear',
